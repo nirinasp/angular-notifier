@@ -72,7 +72,7 @@ export const slide: NotifierAnimationPreset = {
 		// Configure variables, depending on configuration and component
 		if ( config.position.horizontal.position === 'left' || config.position.horizontal.position === 'right' ) {
 			from = {
-				transform: `0, ${ horizontalPosition }, 0 )`
+				transform: `translate3d(0, ${ horizontalPosition }, 0 )`
 			};
 			to = {
 				transform: 'translate3d( 0, 0, 0 )'
