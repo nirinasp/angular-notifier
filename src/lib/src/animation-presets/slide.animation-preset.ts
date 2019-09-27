@@ -32,7 +32,7 @@ export const slide: NotifierAnimationPreset = {
 				transform: `translate3d( 0, ${ shift }px, 0 )`
 			};
 			to = {
-				transform: `translate3d(0, ${ horizontalPosition }px, 0 )`
+				transform: `translate3d(0, ${ horizontalPosition }, 0 )`
 			};
 		} else {
 			from = {
