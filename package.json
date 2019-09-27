@@ -1,21 +1,17 @@
 {
 	"name": "angular-notifier",
 	"description": "A well designed, fully animated, highly customizable, and easy-to-use notification library for your Angular application.",
-	"version": "3.0.2",
-	"author": {
-		"name": "Dominique Müller",
-		"email": "dominique.m.mueller@gmail.com",
-		"url": "https://www.devdom.io/"
-	},
-	"license": "MIT",
+	"version": "3.0.3",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/dominique-mueller/angular-notifier.git"
+		"url": "git+https://github.com/nirinasp/angular-notifier.git"
 	},
-	"homepage": "https://github.com/dominique-mueller/angular-notifier",
+	"author": "Nirina",
+	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/dominique-mueller/angular-notifier/issues"
+		"url": "https://github.com/nirinasp/angular-notifier/issues"
 	},
+  	"homepage": "https://github.com/nirinasp/angular-notifier#readme",
 	"keywords": [
 		"angular",
 		"angular2",
