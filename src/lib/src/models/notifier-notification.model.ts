@@ -28,6 +28,12 @@ export class NotifierNotification {
 	 */
 	public template?: TemplateRef<any> = null;
 
+
+	/**
+	 * custtom data to aware of
+	 */
+	public metadata?: any;
+
 	/**
 	 * Component reference of this notification, created and set during creation time
 	 */
@@ -77,4 +83,9 @@ export interface NotifierNotificationOptions {
 	 * the appearance of the notification
 	 */
 	template?: TemplateRef<any>;
+
+	/**
+	 * custtom data to aware of
+	 */
+	metadata?: any;
 }

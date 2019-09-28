@@ -1,4 +1,4 @@
-<ng-container *ngIf="notification.template; else predefinedNotification" [ngTemplateOutlet]="notification.template" [ngTemplateOutletContext]="{ notification: notification }">
+<ng-container *ngIf="notification.template; else predefinedNotification" [ngTemplateOutlet]="notification.template" [ngTemplateOutletContext]="{ context: this }">
 </ng-container>
 
 <ng-template #predefinedNotification>

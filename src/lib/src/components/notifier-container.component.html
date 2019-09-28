@@ -3,7 +3,8 @@
 		<notifier-notification
 			[notification]="notification"
 			(ready)="onNotificationReady( $event )"
-			(dismiss)="onNotificationDismiss( $event )">
+			(dismiss)="onNotificationDismiss( $event )"
+			(custom_action)="onNotificationCustomAction($event)">
 		</notifier-notification>
 	</li>
 </ul>

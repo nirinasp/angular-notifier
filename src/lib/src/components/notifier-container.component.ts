@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -62,6 +62,13 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	 */
 	private tempPromiseResolver: () => void;
 
+	@Output()
+	/**
+	 * Custom Action event emitter
+	 */
+	private notification_action: EventEmitter<{name: string; payload: any}>;
+
+
 	/**
 	 * Constructor
 	 *
@@ -74,6 +81,7 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 		this.queueService = notifierQueueService;
 		this.config = notifierService.getConfig();
 		this.notifications = [];
+		this.notification_action = new EventEmitter<{name: string; payload: any}>();
 	}
 
 	/**
@@ -131,6 +139,18 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	}
 
 	/**
+	 * Event handler, handles notification  custom action events
+	 * @param action Notification action
+	 */
+	public onNotificationCustomAction(action: { notificationId: string,actionName: string,actionPayload: any }):void {
+		this.queueService.push( {
+		  payload: action,
+		  type: 'CUSTOM_ACTION'	
+		});
+	}
+
+
+	/**
 	 * Handle incoming actions by mapping action types to methods, and then running them
 	 *
 	 * @param   action Action object
@@ -148,6 +168,8 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 				return this.handleHideNewestAction( action );
 			case 'HIDE_ALL':
 				return this.handleHideAllAction( action );
+			case 'CUSTOM_ACTION':
+				return this.handleCustomAction( action );	
 			default:
 				return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
 					resolve(); // Ignore unknown action types
@@ -432,6 +454,20 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 			}
 
 		} );
+	}
+
+
+	/**
+	 * custom action on existing notification
+	 *
+	 * First we emit the custom action 
+	 * After that, we close the notification
+	 * @param   action Action object, payload contains the notification ID, the action Name and the action payload
+	 * @returns Promise, resolved when done
+	 */
+	private handleCustomAction( action: NotifierAction ): Promise<undefined> {
+		this.notification_action.emit({name: action.payload.actionName, payload: action.payload.actionPayload});
+		return this.handleHideAction({ type: 'HIDE', payload: action.payload.notificationId});
 	}
 
 	/**
