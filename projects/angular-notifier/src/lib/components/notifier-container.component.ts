@@ -36,10 +36,10 @@ export class NotifierContainerComponent implements OnDestroy {
   public notifications: Array<NotifierNotification>;
 
   /**
-   * custom action event emmitter
+   * notification custom action event emmitter
    */
   @Output()
-  public customAction: EventEmitter<any>;
+  public notificationCustomAction: EventEmitter<any>;
 
   /**
    * Change detector
@@ -78,7 +78,7 @@ export class NotifierContainerComponent implements OnDestroy {
     this.queueService = notifierQueueService;
     this.config = notifierService.getConfig();
     this.notifications = [];
-    this.customAction = new EventEmitter<any>();
+    this.notificationCustomAction = new EventEmitter<any>();
 
     // Connects this component up to the action queue, then handle incoming actions
     this.queueServiceSubscription = this.queueService.actionStream.subscribe((action: NotifierAction) => {
@@ -427,7 +427,7 @@ export class NotifierContainerComponent implements OnDestroy {
   }
 
   private handleCustomAction(action: NotifierAction): Promise<void> {
-    this.customAction.emit({ name: action.payload.actionName, payload: action.payload.actionPayload });
+    this.notificationCustomAction.emit({ name: action.payload.actionName, payload: action.payload.actionPayload });
     return this.handleHideAction({ type: 'HIDE', payload: action.payload.notificationId });
   }
 
