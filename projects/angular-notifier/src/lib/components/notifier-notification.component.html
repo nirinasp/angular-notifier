@@ -1,7 +1,7 @@
 <ng-container
   *ngIf="notification.template; else predefinedNotification"
   [ngTemplateOutlet]="notification.template"
-  [ngTemplateOutletContext]="{ notification: notification }"
+  [ngTemplateOutletContext]="{ notification: notification, onClickDismiss: onClickDismiss }"
 >
 </ng-container>
 
