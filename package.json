@@ -1,11 +1,11 @@
 {
-  "name": "angular-notifier",
+  "name": "sp-angular-notifier-v2",
   "description": "A well designed, fully animated, highly customizable, and easy-to-use notification library for your Angular application.",
-  "version": "12.1.0",
+  "version": "12.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dominique-mueller/angular-notifier"
+    "url": "https://github.com/nirinasp/angular-notifier.git"
   },
   "keywords": [
     "angular",
@@ -38,7 +38,7 @@
     "tslib": "2.4.x"
   },
   "peerDependencies": {
-    "@angular/common": ">= 14.0.0 < 15.0.0"
+    "@angular/common": ">= 15.2.0"
   },
   "devDependencies": {
     "@angular-builders/jest": "^15.0.0",
